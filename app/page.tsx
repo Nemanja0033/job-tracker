@@ -1,22 +1,31 @@
-import { FileImportButtons } from "@/components/FileImportButtons";
-import { TableDemo } from "@/components/ui/TableDemo";
+import { FileImportForm } from "@/components/FileImportButtons";
+import { JobsTable } from "@/components/JobsTable";
 import { db } from "@/lib/db";
+import { notFound } from "next/navigation";
+
+export interface Job {
+  id: string
+  title: string,
+  appliedAt: Date | any,
+  status: string
+}
 
 export default async function Home() {
-  let jobs: any[] = [];
+  const jobs = await db.job.findMany({
+    orderBy: {
+      appliedAt: "desc"
+    }
+  });
 
-  try {
-    jobs = await db.job.findMany();
-    console.log("Jobs:", jobs);
-  } catch (error) {
-    console.error("Greška pri pristupu bazi:", error);
-  }
+  if(!jobs) notFound();
+
+  console.log(jobs)
 
   return (
     <div className="w-full h-screen flex justify-center overflow-hidden">
-      <div className="w-5xl mt-20 overflow-hidden">
-        <FileImportButtons />
-        <TableDemo />
+      <div className="w-5xl p-3 gap-2  overflow-auto">
+        <FileImportForm />
+        <JobsTable  jobs={jobs} />
       </div>
     </div>
   );

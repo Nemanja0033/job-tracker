@@ -1,10 +1,9 @@
-import { getFile } from "@/actions/getFIle";
+import { importFile } from "@/actions/formActions";
 import { Button } from "@/components/ui/button";
 
-export function FileImportButtons() {
+export function FileImportForm() {
   return (
-    <form action={getFile} className="flex gap-4 items-center">
-      {/* Import Text */}
+    <form action={importFile} className="flex gap-2 justify-end">
       <input
         type="file"
         id="text"
@@ -17,7 +16,7 @@ export function FileImportButtons() {
           <span>+ Import Text</span>
         </Button>
       </label>
-      <Button variant={'secondary'} type="submit">Submit</Button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 }
