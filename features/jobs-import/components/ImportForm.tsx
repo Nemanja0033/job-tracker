@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../../../components/ui/button";
 
 const initialFormState = {
   isSubmitting: false,
@@ -58,7 +58,7 @@ export function FileImportForm() {
   };
 
   return (
-    <form onSubmit={handleFormSubmit} className="flex items-center gap-2 justify-end">
+    <form onSubmit={handleFormSubmit} className="flex items-center gap-2">
       {formState.isError && (
         <span className="text-red-500 text-sm ml-2">
           {formState.errorMessage}
@@ -73,7 +73,7 @@ export function FileImportForm() {
       />
       <label htmlFor="text">
         <Button type="button" asChild>
-          <span>+ Import Text</span>
+          <span>+ Import</span>
         </Button>
       </label>
       <Button type="submit" disabled={formState.isSubmitting}>
