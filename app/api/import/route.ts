@@ -25,6 +25,6 @@ export async function POST(req: Request) {
     return NextResponse.redirect(new URL("/", req.url));
   } catch (err) {
     console.error("Upload error:", err);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    return NextResponse.json({ error: err }, { status: 500 });
   }
 }

@@ -21,7 +21,7 @@ enum JobStatus {
 
 model Job {
   id String @id @default(uuid())
-  title String
+  title String @unique
   appliedAt DateTime @default(now())
   status  String @default("APPLIED")
 }
