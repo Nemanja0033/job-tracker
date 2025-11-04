@@ -3,7 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request){
     try{
-        const jobs = await db.job.findMany();
+        const jobs = await db.job.findMany({
+          orderBy: { appliedAt: "desc"}
+        });
 
         return NextResponse.json({ jobs }, { status: 200});
     }

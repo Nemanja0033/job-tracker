@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Button } from "../../../components/ui/button";
+import { File } from "lucide-react";
 
 const initialFormState = {
   isSubmitting: false,
@@ -76,7 +77,7 @@ export function FileImportForm() {
       />
       <label htmlFor="text">
         <Button type="button" asChild>
-          <span>+ Import</span>
+          <span><File /> Import</span>
         </Button>
       </label>
       <Button type="submit" disabled={formState.isSubmitting}>
