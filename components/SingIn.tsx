@@ -1,7 +1,18 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "./ui/button";
+import { User } from "lucide-react";
 
 export default function SignInButton() {
-  return <Button onClick={() => signIn("google")}>Sign in with Google</Button>;
+  const session = useSession();
+
+  return (
+    <div>
+      {session.status === 'unauthenticated' ? (
+        <Button className="w-full" variant={'outline'} onClick={() => signIn("google")}><User />Sign in with Google</Button>
+      ): (
+        <Button className="w-full" variant={'outline'} onClick={() => signOut()}><User /> Logout</Button>
+      )}
+    </div>
+  ) 
 }
