@@ -7,7 +7,7 @@ export default function Home() {
   const { jobs, isLoading } = useFetchJobs();
 
   if(isLoading){
-    return <Loader />
+    return <Loader type="NORMAL" />
   }
 
   return (

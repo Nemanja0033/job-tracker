@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import SignInButton from "./SingIn"
+import SignInButton from "./AuthToggler"
 
 const items = [
   {

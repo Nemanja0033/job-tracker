@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-interface Email {
+export interface Email {
     from: string,
     id: string,
     snippet: string,

@@ -30,7 +30,7 @@ const ExportToPdf = ({ tableRef, isDisabled }: { tableRef: any; isDisabled: bool
   };
 
   if (isLoading) {
-    return <Loader />;
+    return <Loader type="WAITING_FOR_PDF" />;
   }
 
   return (

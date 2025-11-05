@@ -1,5 +1,5 @@
 "use client"
-import SignInButton from './SingIn'
+import SignInButton from './AuthToggler'
 
 const Navbar = () => {
   return (

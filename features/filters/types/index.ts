@@ -1,4 +1,5 @@
 export interface Filters {
+    filterType: "JOBS" | "EMAILS"
     status: string;
     searchTerm: string
     isDisabled: boolean;

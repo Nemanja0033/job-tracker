@@ -12,7 +12,7 @@ import {
 import { getTextColor } from "@/helpers"
 import { bulkUpdateJobStatuses } from "@/actions/formActions"
 import { useEffect, useRef, useState } from "react"
-import JobFilters from "@/features/filters/components/JobFilters"
+import JobFilters from "@/features/filters/components/FiltersToolbars"
 import { Job } from "../types"
 import { Button } from "@/components/ui/button"
 import { Building2, Mic, Save, Trash, X } from "lucide-react"
@@ -22,7 +22,7 @@ import { FileImportForm } from "@/features/jobs-import/components/ImportForm"
 import ExportToPdf from "@/features/jobs-export/components/ExportToPdf"
 
 export function JobsTable({ jobs }: { jobs: Job[] }) {
-  const { jobsToDisplay, isStatusChanged, query, status, setQuery, setStatus, setIsStatusChanged } = useFilters(jobs);
+  const { filteredData: jobsToDisplay, isStatusChanged, query, status, setQuery, setStatus, setIsStatusChanged } = useFilters(jobs, "JOBS");
   const updateFormRef = useRef<HTMLFormElement | null>(null);
   const tableRef = useRef<any>(null);
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
@@ -66,7 +66,7 @@ export function JobsTable({ jobs }: { jobs: Job[] }) {
           </div>
           <form ref={updateFormRef} className="w-full" action={bulkUpdateJobStatuses}>
           <div className="md:flex items-center grid w-full justify-between">
-            <JobFilters status={status} searchTerm={query} isDisabled={isStatusChanged} handleSearch={(e) => setQuery(e.target.value)} reset={() => { setStatus(""); setQuery("") } } showApplied={() => setStatus("APPLIED")} showInterview={() => setStatus("INTERVIEW")} showRejected={() => setStatus("REJECTED")} />
+            <JobFilters filterType="JOBS" status={status} searchTerm={query} isDisabled={isStatusChanged} handleSearch={(e) => setQuery(e.target.value)} reset={() => { setStatus(""); setQuery("") } } showApplied={() => setStatus("APPLIED")} showInterview={() => setStatus("INTERVIEW")} showRejected={() => setStatus("REJECTED")} />
             {isStatusChanged && (
               <div className="flex gap-2">
                 <Button type="button" onClick={() => { updateFormRef.current?.reset(); setIsStatusChanged(false) } } size={'sm'}><X />Cancel</Button>
@@ -87,7 +87,7 @@ export function JobsTable({ jobs }: { jobs: Job[] }) {
           <Table ref={tableRef} className="mt-5 border">
             <TableCaption>A list of your recent job applications.</TableCaption>
             <TableHeader>
-              <TableRow>
+              <TableRow data-html2canvas-ignore>
                 <TableHead><input data-html2canvas-ignore checked={selectedRows.length === jobs.length} onChange={(e) => checkAllRows(e, jobs)} type="checkbox" /></TableHead>
                 <TableHead className="w-[100px] flex items-center gap-2"><Building2 size={20} strokeWidth={1} />Company</TableHead>
                 <TableHead>Applied At</TableHead>
@@ -95,7 +95,7 @@ export function JobsTable({ jobs }: { jobs: Job[] }) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {jobsToDisplay.map((job) => (
+              {jobsToDisplay.map((job: Job) => (
                 <TableRow key={job.id}>
                   <TableCell><input data-html2canvas-ignore value={job.id} checked={selectedRows.includes(job.id)} onChange={(e) => checkSingleRow(e, job.id)} type="checkbox" /></TableCell>
                   <TableCell className="font-medium">{job.title}</TableCell>
@@ -115,7 +115,7 @@ export function JobsTable({ jobs }: { jobs: Job[] }) {
                 </TableRow>
               ))}
             </TableBody>
-            <TableFooter>
+            <TableFooter data-html2canvas-ignore>
               <TableRow>
                 <TableCell colSpan={5}><span className="font-medium">Total {jobsToDisplay.length}</span></TableCell>
               </TableRow>
