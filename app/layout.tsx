@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react";
 import Navbar from "@/components/Navbar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,18 +24,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryClient = new QueryClient();
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SessionProvider>
-          {/* <Navbar /> */}
-          <SidebarProvider>
-            <AppSidebar />
-            <SidebarTrigger />
-            {children}
-          </SidebarProvider>
+          <QueryClientProvider client={queryClient}>
+                {/* <Navbar /> */}
+                <SidebarProvider>
+                  <AppSidebar />
+                  <SidebarTrigger />
+                  {children}
+                </SidebarProvider>
+          </QueryClientProvider>
         </SessionProvider>
       </body>
     </html>
