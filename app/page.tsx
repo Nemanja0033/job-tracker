@@ -1,10 +1,15 @@
 "use client"
 import { JobsTable } from "@/features/jobs-display/components/JobsTable";
 import Loader from "@/components/Loader";
-import { useFetchJobs } from "@/features/jobs-display/hooks/useFetchJobs";
+import { useQuery } from "@tanstack/react-query";
+import { fetchJobs } from "@/features/jobs-display/services/jobs-display-service";
 
 export default function Home() {
-  const { jobs, isLoading } = useFetchJobs();
+  const { data, isLoading } = useQuery({
+    queryKey: ['jobs'],
+    queryFn: fetchJobs,
+    staleTime: 60 * 5000
+  })
 
   if(isLoading){
     return <Loader type="NORMAL" />
@@ -13,7 +18,7 @@ export default function Home() {
   return (
     <main className="w-full h-screen flex justify-center items-start overflow-auto">
       <div className="w-5xl p-3 grid place-items-center gap-5">
-        <JobsTable isLoading={isLoading} jobs={jobs ?? []} />
+        <JobsTable isLoading={isLoading} jobs={data.jobs ?? []} />
       </div>
     </main>
   );

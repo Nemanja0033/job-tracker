@@ -3,6 +3,7 @@ import {
   ScrollText,
   ChartArea,
   Inbox,
+  ChartBar
 } from "lucide-react"
 
 import {
@@ -28,6 +29,11 @@ const items = [
     title: "Mails (Early Access)",
     url: "/mails",
     icon: Inbox,
+  },
+  {
+    title: "Statistics",
+    url: "/stats",
+    icon: ChartBar
   }
 ]
 

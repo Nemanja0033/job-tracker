@@ -1,7 +1,6 @@
 import { db } from "@/lib/db";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
-import { title } from "process";
 
 export async function GET(req: NextRequest) {
   try{

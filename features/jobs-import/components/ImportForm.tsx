@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import { Button } from "../../../components/ui/button";
-import { File, Info, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
 
 const initialFormState = {
   isSubmitting: false,
@@ -12,6 +13,7 @@ const initialFormState = {
 
 export function FileImportForm({ isDisabled }: { isDisabled: boolean }) {
   const [formState, setFormState] = useState(initialFormState);
+  const queryClient = useQueryClient();
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,7 +52,7 @@ export function FileImportForm({ isDisabled }: { isDisabled: boolean }) {
       }
 
       setFormState((perv) => ({...perv, isSubmitting: false}));
-      window.location.reload();
+      queryClient.invalidateQueries({ queryKey: ['jobs']});
     } catch (err: any) {
       setFormState({
         isSubmitting: false,
