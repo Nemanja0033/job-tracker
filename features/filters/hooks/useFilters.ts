@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { Job } from "../../jobs-display/types/index"
-import { Email } from "@/features/mails/hooks/useFetchMails";
 
 export function useFilters(data: any, type: "JOBS" | "EMAIL"){
     const [query, setQuery] = useState('');

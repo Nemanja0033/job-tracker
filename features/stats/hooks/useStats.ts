@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { fetchStats } from "../service/stats-service"
-import { StatsData } from "@/app/stats/page"
+import { StatsData } from "../types"
 
 export function useStats(startDate: string, endDate: string) {
   return useQuery<StatsData>({

@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { getTextColor } from "@/helpers"
-import { bulkUpdateJobStatuses } from "@/actions/formActions"
+import { bulkUpdateJobStatuses } from "@/features/batch-actions/server-actions/formActions"
 import { useEffect, useRef, useState } from "react"
 import JobFilters from "@/features/filters/components/FiltersToolbars"
 import { Job } from "../types"

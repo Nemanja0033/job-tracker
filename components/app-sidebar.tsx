@@ -1,7 +1,5 @@
 import {
-  Calendar,
   ScrollText,
-  ChartArea,
   Inbox,
   ChartBar
 } from "lucide-react"
@@ -26,7 +24,7 @@ const items = [
     icon: ScrollText,
   },
   {
-    title: "Mails (Early Access)",
+    title: "Mails",
     url: "/mails",
     icon: Inbox,
   },

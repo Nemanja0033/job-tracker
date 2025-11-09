@@ -11,7 +11,6 @@ const AVATAR_PLACEHOLDER = "https://upload.wikimedia.org/wikipedia/commons/7/7c/
 export default function AuthToggler() {
   const session = useSession();
 
-  console.log("@session", session.data?.user?.image)
   return (
     <div>
       <Popover>
